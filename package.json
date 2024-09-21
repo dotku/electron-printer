@@ -1,10 +1,13 @@
 {
-  "name": "electron-quick-start",
-  "version": "1.0.0",
+  "name": "electron-printer",
+  "version": "1.0.1",
   "description": "A minimal Electron application",
   "main": "main.js",
   "scripts": {
-    "start": "electron ."
+    "start": "electron .",
+    "electron-build": "electron-builder",
+    "package": "next build && next export && electron-builder build --publish never",
+    "dist": "electron-builder"
   },
   "repository": "https://github.com/electron/electron-quick-start",
   "keywords": [
@@ -16,7 +19,34 @@
   ],
   "author": "GitHub",
   "license": "CC0-1.0",
+  "dependencies": {
+    "electron-is-dev": "^3.0.1",
+    "next": "^14.2.13",
+    "serve": "^14.2.3"
+  },
   "devDependencies": {
-    "electron": "^32.1.2"
+    "electron": "^32.1.2",
+    "electron-builder": "^25.0.5"
+  },
+  "build": {
+    "appId": "com.yourapp.id",
+    "directories": {
+      "output": "dist"
+    },
+    "files": [
+      "main.js",
+      "next.config.js",
+      ".next",
+      "package.json"
+    ],
+    "mac": {
+      "target": "dmg"
+    },
+    "win": {
+      "target": "nsis"
+    },
+    "linux": {
+      "target": "AppImage"
+    }
   }
 }
