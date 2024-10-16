@@ -22,7 +22,7 @@
   "dependencies": {
     "electron-is-dev": "^3.0.1",
     "next": "^14.2.13",
-    "serve": "^14.2.3"
+    "serve": "^14.2.4"
   },
   "devDependencies": {
     "electron": "^32.1.2",
