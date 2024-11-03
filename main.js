@@ -9,9 +9,59 @@ ipcMain.on("send-command", async (event, arg) => {
   // Handle your command here
   const printWindow = new BrowserWindow({ show: false });
   printWindow.loadURL(
-    `data:text/html;charset=utf-8,<html><body><h1>${JSON.stringify(
-      arg
-    )}</h1></body></html>`
+    `data:text/html;charset=utf-8,<html>
+    <style>
+      * {
+        font-size: 12px;
+        font-family: Arial, sans-serif;
+        max-width: 320px;
+      }
+    </style>
+    <body>
+    <center>
+      <div style="margin: 20px">
+        <h1 style="margin: 0px">Restaurant Name</h1>
+        <address>
+          <div>123th Ave, City, State 12345</div>
+          <div>Phone: 123-456-7890</div>
+        </address>
+      </div>
+      <div style="margin: 20px">
+        <div style="font-size: 20px;">Order: T12/12345</div>
+        <div>${new Date().toLocaleString()}</div>
+      </div>
+      <div style="display: flex; justify-content: space-between; margin: 20px ">
+        <span>${arg.name} x ${arg.number}</span>
+        <span>${arg.price * arg.number}</span>
+      </div>
+      <div style="display: flex; justify-content: space-between; margin: 20px ">
+        <span>Visa 1234</span>
+        <span>Sale</span>
+      </div>
+      <div style="display: flex; justify-content: space-between">
+        <span>Subtotal</span>
+        <span>$${arg.price * arg.number}</span>
+      </div>
+      <div style="display: flex; justify-content: space-between ">
+        <span>Tax</span>
+        <span>$${(arg.price * 0.8).toFixed(2)}</span>
+      </div>
+      <div style="display: flex; justify-content: space-between ">
+        <span>Total</span>
+        <span>$${arg.price * arg.number + arg.price * 0.8}</span>
+      </div>
+      <div style="display: flex; justify-content: space-between; margin: 40px">
+        <span>Tip</span>
+        <span style="border-bottom: 1px solid black; width: 100px"></span>
+      </div>
+     <div style="display: flex; justify-content: space-between; margin: 40px">
+        <span>x</span>
+        <span style="border-bottom: 1px solid black; width: 100px"></span>
+      </div>
+      <div>Merchandise Copy</div>
+      <div>Thanks for visiting our restaurant!</div>
+    </div>
+    </center></body></html>`
   );
   printWindow.webContents.on("did-finish-load", () => {
     console.log("did-finish-load");
