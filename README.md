@@ -2,6 +2,11 @@
 
 A electron based priting demo app.
 
+## GTD
+
+1. Menu System
+2. Order tracking system/dashboard
+
 ## Tech Stack
 
 - Electron
